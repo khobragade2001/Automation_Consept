@@ -1,13 +1,26 @@
-# exception is nothing but Runtime error and it occure due to incorrect implentation of logic
-# Exception Handing is a mechanism through which we can handle the Runtime error usingg following
-# try, except, else
+import time
 
-a= int(input("Enter First number :"))
-s= int(input("Enter Second number :"))
+from selenium import  webdriver
+from selenium.webdriver.common.by import By
+
+driver = webdriver.Chrome()
+driver.maximize_window()
+driver.implicitly_wait(10)
+x= By.XPATH
+driver.get("https://parabank.parasoft.com/parabank/index.htm")
+
+driver.find_element(x, "//input[@name='username']").send_keys(" ")
+driver.find_element(x, "//input[@name='password']").send_keys(" ")
 try:
-    c=a/s
-    print("first number divide by second number is ", c)
+    driver.find_element(x, "//input[@value='Log In']").click()
+    time.sleep(1)
 except:
-    print('can not devide by 0')
-print("End of Program")
+    print("invalid user name or passwords")
+    driver.save_screenshot("D:\\CREDENCE CLASS\\AUTOMATION\\automation_concept\\screenshots\\exception_handle_002.png")
 
+else:
+    driver.save_screenshot("D:\\CREDENCE CLASS\\AUTOMATION\\automation_concept\\screenshots\\exception.png")
+
+finally:
+    print("YE TO PRINT HOGA HI HOGA .....")
+    driver.quit()
